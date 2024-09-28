@@ -1,0 +1,56 @@
+<div mat-dialog-title>
+    <h2>Housing Form</h2>
+</div>
+<form [formGroup]="houseForm">
+    <div mat-dialog-content>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Ex.Resort" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="Ex.Hanoi" formControlName="city">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>state</mat-label>
+                <input matInput placeholder="Ex.IL" formControlName="state">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>photo</mat-label>
+                <input matInput placeholder="Link of photo" formControlName="photo">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>availableUnits</mat-label>
+                <input matInput placeholder="Ex.4" type="number" formControlName="availableUnits">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="wifi">
+                <mat-label><b>Wifi</b></mat-label>
+                <mat-radio-button value="true">True</mat-radio-button>
+                <mat-radio-button value="false">False</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="laundry">
+                <mat-label><b>Laundry</b></mat-label>
+                <mat-radio-button value="true">True</mat-radio-button>
+                <mat-radio-button value="false">False</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+</form>
+
+<div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onFormSubmit()">{{data ? 'Update': 'Save'}}</button>
+</div>

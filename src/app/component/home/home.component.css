@@ -1,0 +1,77 @@
+:root{
+    --accent-color: #CC66FF;
+    --primary-color: #CC99FF;
+}
+.results {
+    display: grid;
+    column-gap: 14px;
+    row-gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+    margin-top: 50px;
+    justify-content: space-around;
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .navbar {
+    width: 40%;
+  }
+  
+  input[type="text"] {
+    border: solid 1px #66FF99;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 4px;
+    display: inline-block;
+    width: 80%;
+  }
+  
+  button {
+    padding: 10px;
+    border: solid 1px #66FF99;
+    background: #66FF99;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .admin_dashboard {
+    border: solid 1px #66FF99;
+    background: #66FF99;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+  
+  }
+
+  .bx {
+    font-size: 40px;
+    height: 100%;
+    margin-right: 3rem;
+    align-items: end;
+    color: #66FF99;
+    min-width: calc(60px - (4px + 6px) * 2);
+    justify-content: end;
+    cursor: pointer;
+  }
+  
+  @media (min-width: 500px) and (max-width: 768px) {
+    .results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    input[type="text"] {
+        width: 70%;
+    }   
+  }
+  
+  @media (max-width: 499px) {
+    .results {
+        grid-template-columns: 1fr;
+    }    
+  }

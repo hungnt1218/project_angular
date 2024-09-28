@@ -1,0 +1,70 @@
+<mat-toolbar color="primary" class="nav-bar">
+    <a class="admin_dashboard" [routerLink]="['/admin']">Admin Dashboard</a>
+      <span>Product Management</span>
+      <button mat-raised-button (click)="openAddProductForm()">
+          ADD PRODUCT
+      </button>
+  </mat-toolbar>
+  
+  <div style="margin-bottom: 1rem;"></div>
+  
+  <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="tenSP">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.tenSP}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="donGia">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by donGia"> Don Gia </th>
+          <td mat-cell *matCellDef="let element"> {{element.donGia}} </td>
+        </ng-container>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="soLuong">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by soLuong"> So Luong </th>
+          <td mat-cell *matCellDef="let element"> {{element.soLuong}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="ngayNhap">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ngayNhap"> Ngay Nhap </th>
+          <td mat-cell *matCellDef="let element"> {{element.ngayNhap}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="ngayHetHan">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ngayHetHan"> Ngay Het Han </th>
+          <td mat-cell *matCellDef="let element"> {{element.ngayHetHan}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary" (click)="openEditForm(element)">
+                  <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteProduct(element.id)">
+                  <mat-icon>delete</mat-icon>
+              </button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+    
+    

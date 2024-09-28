@@ -1,0 +1,102 @@
+<mat-toolbar color="primary" class="nav-bar">
+    <a class="admin_dashboard" [routerLink]="['']">Home page</a>
+      <span>Cart Management</span>
+  </mat-toolbar>
+  
+  <div style="margin-bottom: 1rem;"></div>
+  
+  <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          (change)="logSelection()"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          (change) = "logSelection()"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by city"> City </th>
+          <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="photo">
+          <th mat-header-cell *matHeaderCellDef> Photo </th>
+          <td mat-cell *matCellDef="let element">
+              <img src="{{element.photo[0] || element.photo}}" width="100px" height="100px">
+  
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price"> Price </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity"> Quantity </th>
+          <td mat-cell *matCellDef="let element" class="mat_quantity">{{element.quantity}}
+            <div class="mat_icon">
+              <mat-icon (click)="increaseQuantity(element)">expand_less</mat-icon> 
+              <mat-icon (click)="reduceQuantity(element)">expand_more</mat-icon>
+            </div>
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="user_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number"> User ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="date_item">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date_item | date:'yyyy-MM-dd'}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn" (click)="deleteCart(element.id)">
+                  <mat-icon>delete</mat-icon>
+              </button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+
+    <div class="cartFooter">
+      <p id="totalPriceElement">Tổng tiền: {{logSelection()}}$</p>
+      <button  mat-raised-button (click)="buyAll()">Mua ngay</button>
+    </div>
+    
+    

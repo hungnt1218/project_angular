@@ -1,0 +1,10 @@
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    color: #66FF99;
+    background-color: #66FF99;
+}
+
+svg{
+    cursor: pointer;
+}
